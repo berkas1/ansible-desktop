@@ -1,0 +1,26 @@
+---
+- name: test shell
+  shell: uptime --pretty
+
+- name: Download customized .vimrc file
+  get_url:
+    url: https://raw.githubusercontent.com/berkas1/config-files/master/.vimrc
+    dest: ~/.vimrc
+    mode: 0666 
+  tags: ['vim']
+
+- name: Create directory for Vim autoload
+  file:
+    path: "/home/{{ ansible_user_id }}/.vim/autoload/"
+    state: directory
+
+- name: Check if vimplug is installed
+  stat: 
+    path: "/home/{{ ansible_user_id}}/.vim/autoload/plug.vim"
+  register: vimplug_exists
+  tags: ['vim']
+
+- name: Install vim-plug
+  shell: "curl -fLo /home/{{ ansible_user_id }}/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
+  when: vimplug_exists.stat.exists == False
+  tags: ['vim']

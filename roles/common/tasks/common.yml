@@ -1,0 +1,43 @@
+---
+
+- name: Update all packages to the latest version
+  become: true
+  apt:
+    upgrade: dist
+    update_cache: true
+
+- name: HTTPS transport for APT
+  become: true
+  stat:
+    path: /usr/lib/apt/methods/https
+  register: apt_https_transport
+
+- name: Install basic packages
+  become: true
+  apt:
+    name: "{{ desktop_packages }}"
+    state: latest
+    update_cache: true
+
+- name: Enable systemd-timesyncd
+  become: true
+  service: 
+      name=systemd-timesyncd 
+      state=started 
+      enabled=yes
+
+- name: Copy locale.conf
+  become: true
+  copy: src=files/locale.conf dest=/etc/locale.conf
+  register: common_locale_config
+
+- name: Copy locale.gen
+  become: true
+  copy: src=files/locale.gen dest=/etc/locale.gen
+  register: common_locale_gen
+
+- name: Generate locale 
+  become: true
+  command: locale-gen
+  when: common_locale_config.changed or common_locale_gen.changed
+

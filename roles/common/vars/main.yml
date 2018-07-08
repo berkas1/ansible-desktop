@@ -1,0 +1,35 @@
+---
+desktop_packages:
+  - apt-transport-https
+  - htop
+  - vim
+  - nano
+  - iftop
+  - ntp
+  - openssh-server
+  - libreoffice
+  - git
+  - mutt
+  - whois
+  - python3
+  - transmission-gtk
+  - jq
+  - clang
+  - gimp
+  - psensor
+  - python3-pip
+  - gnupg
+  - thunderbird
+  - sudo
+  - cups
+  - firefox
+  - virtualbox
+  - virtualbox-ext-pack 
+  - virtualbox-qt
+  - virtualbox-dkms
+  - gdebi
+  - vlc
+  - smartmontools
+  - traceroute
+
+url_vagrant: "https://releases.hashicorp.com/vagrant/{{vagrant_version}}/vagrant_{{vagrant_version}}_{{ansible_architecture}}.deb"

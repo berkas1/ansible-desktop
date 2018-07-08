@@ -1,0 +1,10 @@
+- name: Prepare desktop environment
+  hosts: all
+  roles:
+    - role: common
+      vagrant_version: "2.1.1"
+    - role: geerlingguy.ansible
+      become: true
+    - role: jdauphant.vagrant
+      become: true
+      vagrant_version: "2.1.1"
