@@ -1,7 +1,4 @@
 ---
-- name: test shell
-  shell: uptime --pretty
-
 - name: Download customized .vimrc file
   get_url:
     url: https://raw.githubusercontent.com/berkas1/config-files/master/.vimrc
@@ -13,6 +10,7 @@
   file:
     path: "/home/{{ ansible_user_id }}/.vim/autoload/"
     state: directory
+  tags: ['vim'] 
 
 - name: Check if vimplug is installed
   stat: 
