@@ -33,5 +33,6 @@ desktop_packages:
   - traceroute
   - curl
   - make
+  - sl
 
 url_vagrant: "https://releases.hashicorp.com/vagrant/{{vagrant_version}}/vagrant_{{vagrant_version}}_{{ansible_architecture}}.deb"
