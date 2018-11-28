@@ -34,5 +34,6 @@ desktop_packages:
   - curl
   - make
   - sl
+  - gcc-arm-none-eabi
 
 url_vagrant: "https://releases.hashicorp.com/vagrant/{{vagrant_version}}/vagrant_{{vagrant_version}}_{{ansible_architecture}}.deb"
